@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared('ALTER TABLE product_stores ADD PRIMARY KEY (fk_pk_product_id, fk_pk_store_id)');
+        DB::unprepared('ALTER TABLE "product_stores" ADD PRIMARY KEY (fk_pk_product_id, fk_pk_store_id)');
     }
 
     /**

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shoppingList_product', function (Blueprint $table) {
+        Schema::create('shoppingList_products', function (Blueprint $table) {
             $table->unsignedInteger('fk_pk_shoppingList_id');
             $table->unsignedInteger('fk_pk_product_id');
             $table->string('amount');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared('ALTER TABLE "shoppingList_product" ADD PRIMARY KEY ("fk_pk_shoppingList_id", fk_pk_product_id)');
+        DB::unprepared('ALTER TABLE "shoppingList_products" ADD PRIMARY KEY ("fk_pk_shoppingList_id", fk_pk_product_id)');
     }
 
     /**

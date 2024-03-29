@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recipe_ingredient', function (Blueprint $table) {
+        Schema::create('household_recipes', function (Blueprint $table) {
+            $table->unsignedInteger('fk_pk_household_id');
             $table->unsignedInteger('fk_pk_recipe_id');
-            $table->unsignedInteger('fk_pk_ingredient_id');
-            $table->string('amount');
+            $table->foreign('fk_pk_household_id')->references('pk_household_id')->on('households');
             $table->foreign('fk_pk_recipe_id')->references('pk_recipe_id')->on('recipes');
-            $table->foreign('fk_pk_ingredient_id')->references('pk_ingredient_id')->on('ingredients');
             $table->timestamps();
         });
 
-        DB::unprepared('ALTER TABLE recipe_ingredient ADD PRIMARY KEY (fk_pk_recipe_id, fk_pk_ingredient_id)');
+        DB::unprepared('ALTER TABLE "household_recipes" ADD PRIMARY KEY (fk_pk_household_id, fk_pk_recipe_id)');
     }
 
     /**
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recipe_ingredient');
+        Schema::dropIfExists('household_recipe');
     }
 };
