@@ -19,7 +19,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email',
+        'username', 'firstname', 'lastname', 'email', 'password'
     ];
 
     /**
@@ -28,6 +28,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $hidden = [
-        'password',
+        'password', 'pk_user_id'
     ];
+
+    protected $primaryKey = 'pk_user_id';
+
+    public function user_household()
+    {
+        return $this->hasMany('App\Models\UserHousehold');
+    }
 }
